@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WORK IN PROCESS S.R.L. — Servicios de diseño especializado</title>
+  <meta name="description" content="WORK IN PROCESS S.R.L. — estudio de diseño especializado en experiencias, marcas y espacios. Prototipado ágil, diseño de interfaces, señalética y ambientaciones para empresas y organismos." />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="light dark" />
+  <!--
+    Empresa: WORK IN PROCESS S.R.L.
+    Dirección: Av LIBERTADOR DEL 5569 1426 Ciudad de Buenos Aires
+    Mail: info@workinprocess.pro
+    Rubros: Specialized Design Services; Professional, Scientific, and Technical Services; Design services
+
+    Cumplimiento (Apple Review friendly):
+      - Formulario sin campo de teléfono.
+      - Etiquetas accesibles, aria-roles, foco gestionado en modales.
+      - Envío simulado, sin almacenamiento de datos ni rastreos.
+  -->
+  <style>
+    :root{
+      --bg:#0d1b14;
+      --panel:#113122;
+      --paper:#ffffff;
+      --ink:#0a0e0c;
+      --muted:#61796e;
+      --brand:#1aa672;
+      --brand-2:#0e7a4d;
+      --ring: rgba(26,166,114,.28);
+      --soft:#ecf5f0;
+      --card:#f6faf7;
+      --shadow:0 10px 30px rgba(0,0,0,.15);
+      --radius:22px;
+    }
+
+    /* Reset + tipografías del sistema para iOS/macOS */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      color:var(--ink);
+      background:
+        linear-gradient(180deg, #e2efe8 0%, #f7fbf9 20%, #f7fbf9 100%);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    img{max-width:100%;display:block;border-radius:16px}
+    a{color:var(--brand);text-decoration:none}
+    a:focus, button:focus, input:focus, textarea:focus{outline:2px solid var(--brand); outline-offset:2px}
+    .container{max-width:1160px;margin:auto;padding:0 24px}
+
+    /* Header inspirado en макет: стеклянная панель */
+    header{
+      position:sticky; top:0; z-index:60;
+      background:#ffffffcc; backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid #e4efe8;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center; font-weight:900; letter-spacing:.2px
+    }
+    .brand-badge{
+      width:40px; height:40px; border-radius:12px;
+      background:radial-gradient(60% 60% at 30% 30%, #6ee7b7 0%, #1aa672 60%, #0e7a4d 100%);
+      display:grid; place-items:center; color:white; font-weight:900; box-shadow:var(--shadow)
+    }
+    .menu{display:flex; gap:16px; flex-wrap:wrap}
+    .menu a{padding:10px 14px; border-radius:999px; color:#0a0e0c; font-weight:600}
+    .menu a:hover{background:var(--soft)}
+    .cta{
+      padding:10px 16px; border-radius:999px; border:1px solid var(--brand);
+      color:white; background:linear-gradient(180deg,var(--brand),var(--brand-2));
+      box-shadow:0 6px 18px var(--ring);
+    }
+    .cta:hover{filter:saturate(112%)}
+
+    /* Hero con fondo vegetal */
+    .hero{
+      position:relative; color:white; overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(13,27,20,.62), rgba(13,27,20,.62)),
+        url('https://images.unsplash.com/photo-1524591621243-69b3ab3b0b59?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-inner{padding:120px 0}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      background:#ffffff22; padding:6px 12px; border-radius:999px; font-weight:700
+    }
+    .hero h1{
+      font-size:clamp(34px,6vw,56px); margin:16px 0 10px; line-height:1.1;
+      text-shadow:0 8px 28px rgba(0,0,0,.35)
+    }
+    .hero p{max-width:780px; font-size:clamp(16px,2.5vw,20px); color:#f0fff7}
+    .hero-actions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap}
+    .btn{
+      padding:12px 18px; border-radius:999px; border:1px solid transparent;
+      font-weight:800; transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      background:white; color:#0a0e0c;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.alt{background:transparent; color:white; border-color:#ffffff66}
+    .btn.alt:hover{background:#ffffff10}
+
+    /* Secciones y заголовки */
+    section{padding:76px 0}
+    .section-head{margin-bottom:24px}
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:8px; color:var(--brand);
+      font-weight:900; text-transform:uppercase; letter-spacing:.2em
+    }
+    .section-title{font-size:clamp(26px,4.6vw,36px); margin:10px 0 8px}
+    .section-copy{color:#32433b; max-width:820px}
+
+    /* Cards comunes (референс — округлённые блоки) */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+      gap:18px; margin-top:18px
+    }
+    .card{
+      background:white; border-radius:var(--radius);
+      padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column
+    }
+    .card .thumb{height:190px; background:#d8e6df; border-radius:18px; overflow:hidden}
+    .pill{
+      display:inline-flex; gap:8px; align-items:center; font-weight:800;
+      background:var(--soft); padding:8px 12px; border-radius:999px; margin-top:-22px; position:relative;
+      box-shadow:0 6px 16px rgba(0,0,0,.08)
+    }
+    .card h3{margin:12px 0 6px}
+    .card p{color:#475e54; margin:0}
+
+    /* Bloque oscuro «por qué/beneficios» — центрированная карта */
+    .why-wrap{display:flex; justify-content:center}
+    .why{
+      width:min(100%, 1040px);
+      background:rgba(17,49,34,.98);
+      color:#eaf6f0; border-radius:26px; padding:56px 28px; box-shadow:var(--shadow)
+    }
+    .why .section-copy{color:#cfe6dc}
+    .benefits{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:18px; margin-top:24px
+    }
+    .benefit{background:#133a29; border-radius:18px; padding:18px; box-shadow:var(--shadow)}
+    .benefit h4{margin:8px 0 6px; color:#f3fff9}
+    .benefit p{color:#cfe6dc}
+
+    /* Proceso — карточки со стрелочками */
+    .process{
+      background:linear-gradient(180deg,#f5fbf8,#eaf5ef);
+      border:1px solid #e1efe7; border-radius:24px; padding:28px
+    }
+    .stages{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-top:12px
+    }
+    .stage{
+      background:white; border-radius:18px; padding:18px; position:relative; box-shadow:var(--shadow)
+    }
+    .stage:after{
+      content:""; position:absolute; right:16px; bottom:16px; width:14px; height:14px; border-radius:999px; background:var(--brand);
+      box-shadow:0 0 0 6px var(--ring)
+    }
+    .stage h5{margin:8px 0 6px}
+    .stage p{color:#42544b}
+
+    /* Sección extra «Misión y enfoque» в стиле широкой карточки */
+    .mission{
+      background:
+        linear-gradient(180deg,rgba(26,166,114,.06),rgba(26,166,114,.02));
+      border:1px solid #e2eee8; border-radius:24px; padding:28px
+    }
+
+    /* Галерея — для визуальной интеграции (дизайн-референс) */
+    .gallery{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-top:10px
+    }
+
+    /* Contacto + pie */
+    .contact-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
+    footer{background:var(--bg); color:#c9e0d6; padding:42px 0; margin-top:60px}
+    .meta{color:#a7c2b7}
+
+    /* Modales (форма и подтверждение) */
+    .modal{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+      background:rgba(10,14,12,.55); backdrop-filter:blur(6px); z-index:1000
+    }
+    .modal[aria-hidden="false"]{display:flex}
+    .dialog{
+      width:min(720px,92vw); background:white; border-radius:22px; box-shadow:var(--shadow); padding:22px
+    }
+    .dialog h3{margin-top:0}
+    .dialog .close{
+      appearance:none; border:none; background:transparent; font-weight:900; font-size:18px; float:right; cursor:pointer
+    }
+
+    /* Formulario — sin teléfono, Apple friendly */
+    form{display:grid; gap:12px}
+    label{font-weight:800}
+    input, textarea{
+      width:100%; border-radius:12px; border:1px solid #dbe9e2; padding:12px 14px;
+      font:inherit; background:#fbfdfc
+    }
+    textarea{min-height:120px; resize:vertical}
+    .consent{
+      display:flex; gap:10px; align-items:flex-start; background:#f5fbf8; padding:10px; border-radius:12px; border:1px solid #e2eee8
+    }
+    .submit{
+      appearance:none; border:1px solid var(--brand); background:linear-gradient(180deg,var(--brand),var(--brand-2));
+      color:white; border-radius:999px; padding:12px 18px; font-weight:900; cursor:pointer;
+      box-shadow:0 8px 22px var(--ring)
+    }
+    .submit[disabled]{opacity:.7; cursor:not-allowed}
+    .helper{color:#5a6c63; font-size:.95rem}
+
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 660px){
+      .menu{display:none}
+      .stage:after{display:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header role="banner">
+    <div class="container nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true">WP</div>
+        <span>WORK IN PROCESS S.R.L.</span>
+      </div>
+      <nav class="menu" aria-label="Menú">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Sobre el estudio</a>
+        <a href="#servicios">Soluciones</a>
+        <a href="#beneficios">Ventajas</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#contacto" class="cta">Escribir</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero" role="region" aria-label="Bienvenida">
+    <div class="container hero-inner">
+      <span class="kicker">Diseño especializado • Marcas, interfaces y espacios</span>
+      <h1>Diseño que hace que las ideas respiren y funcionen</h1>
+      <p>
+        Somos un estudio de diseño que conecta estrategia, investigación y prototipado para crear marcas, productos digitales y
+        experiencias espaciales que la gente entiende y el negocio puede sostener. Entregamos desde la identidad hasta la micro-interacción.
+      </p>
+      <div class="hero-actions" role="group" aria-label="Acciones">
+        <a class="btn" href="#servicios">Explorar soluciones</a>
+        <button class="btn alt" data-open-modal="contact">Iniciar una consulta</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="nosotros" role="region" aria-label="Acerca del estudio">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Quiénes somos</div>
+        <h2 class="section-title">Estudio de diseño con foco en resultados medibles</h2>
+        <p class="section-copy">
+          En WORK IN PROCESS S.R.L. combinamos diseño estratégico, pensamiento de producto y documentación rigurosa.
+          Nuestro equipo ha trabajado con PyMEs, startups y organismos públicos, llevando procesos claros y entregables listos para producción.
+          Prototipamos temprano y testeamos con personas para reducir riesgo y encontrar lo esencial de cada experiencia.
+          Nos obsesiona la claridad: nomenclaturas, guías, bibliotecas de componentes y señalética que cualquiera puede seguir.
+          Operamos en Buenos Aires y de forma remota en Latinoamérica, con metodologías ágiles y una cultura de transparencia.
+        </p>
+      </div>
+
+      <!-- mini-galería para «sabor» -->
+      <div class="gallery" role="list" aria-label="Muestras visuales">
+        <figure role="listitem">
+          <img alt="Moodboard de marca con tipografías y paletas"
+               src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1600&auto=format&fit=crop" />
+        </figure>
+        <figure role="listitem">
+          <img alt="Interfaz digital en laptop con componentes limpios"
+               src="main1.jpg" />
+        </figure>
+        <figure role="listitem">
+          <img alt="Señalética minimalista en espacio de trabajo"
+               src="https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1600&auto=format&fit=crop" />
+        </figure>
+        <figure role="listitem">
+          <img alt="Prototipos impresos y herramientas de diseño"
+               src="main2.jpg" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" role="region" aria-label="Servicios principales">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Soluciones</div>
+        <h2 class="section-title">Diseño que pasa de la maqueta a la realidad</h2>
+        <p class="section-copy">Tres líneas que suelen cruzarse en proyectos reales; podemos entrar por cualquiera y acompañarte hasta el final.</p>
+      </div>
+
+      <div class="cards" role="list">
+        <!-- Servicio 1 -->
+        <article class="card" role="listitem">
+          <div class="thumb">
+            <img alt="Guías de marca con logotipo y grilla"
+                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop" />
+          </div>
+          <div class="pill">Marca • Identidad</div>
+          <h3>Branding y sistemas visuales</h3>
+          <p>
+            Investigación, posicionamiento, naming y construcción de identidad. Creamos sistemas modulares con tipografías,
+            color, retícula y usos para digital y físico. Entregamos guías claras que evitan dudas en el día a día.
+          </p>
+        </article>
+
+        <!-- Servicio 2 -->
+        <article class="card" role="listitem">
+          <div class="thumb">
+            <img alt="UI en monitor con prototipos y componentes"
+                 src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1400&auto=format&fit=crop" />
+          </div>
+          <div class="pill">Producto • UI/UX</div>
+          <h3>Diseño de interfaces y experiencia</h3>
+          <p>
+            Flujos, arquitectura de información y componentes accesibles. Prototipos navegables y test con usuarios
+            para validar antes de construir. Documentación para desarrollo con tokens y variantes.
+          </p>
+        </article>
+
+        <!-- Servicio 3 -->
+        <article class="card" role="listitem">
+          <div class="thumb">
+            <img alt="Carteles y ambientación en un hall"
+                 src="https://images.unsplash.com/photo-1545235617-9465d2a55698?q=80&w=1400&auto=format&fit=crop" />
+          </div>
+          <div class="pill">Espacios • Señalética</div>
+          <h3>Wayfinding y ambientaciones</h3>
+          <p>
+            Diagnóstico de recorridos, jerarquías de mensajes y prototipos escala 1:1. Materialidad pensada para
+            mantenimiento real. Manual de instalación y plan de pruebas in situ.
+          </p>
+        </article>
+      </div>
+
+      <div class="contact-cta" role="group" aria-label="Atajos">
+        <button class="btn" data-open-modal="contact">Pedir una orientación</button>
+        <a class="btn alt" href="#contacto">Ver datos de contacto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENTAJAS / DIFERENCIALES -->
+  <section id="beneficios" role="region" aria-label="Ventajas del estudio">
+    <div class="container why-wrap">
+      <div class="why">
+        <div class="section-head">
+          <div class="eyebrow">Por qué elegirnos</div>
+          <h2 class="section-title">Diseño claro, proceso transparente, entrega cuidada</h2>
+          <p class="section-copy">
+            Nuestro diferencial combina estrategia y ejecución: entendemos el negocio, prototipamos temprano y dejamos
+            documentación que cualquier equipo puede seguir sin fricción.
+          </p>
+        </div>
+        <div class="benefits" role="list">
+          <div class="benefit" role="listitem">
+            <h4>Medimos para decidir</h4>
+            <p>Objetivos, hipótesis, tarjetas de prueba y métricas que se pueden verificar en prototipo y en producción. Todas las decisiones dejan rastro.</p>
+          </div>
+          <div class="benefit" role="listitem">
+            <h4>Diseño que escala</h4>
+            <p>Bibliotecas de componentes, estilos de texto, tokens y pautas de accesibilidad. Lo que creamos hoy puede crecer mañana sin perder consistencia.</p>
+          </div>
+          <div class="benefit" role="listitem">
+            <h4>Entrega lista para operar</h4>
+            <p>Archivos ordenados, nomenclaturas y handoff paso a paso. Si hace falta, acompañamos a desarrollo y obra para asegurar el resultado final.</p>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:22px">
+          <button class="btn" data-open-modal="contact">Contanos tu desafío</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section id="proceso" role="region" aria-label="Cómo trabajamos">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Cómo trabajamos</div>
+        <h2 class="section-title">Del brief al impacto sin sobresaltos</h2>
+        <p class="section-copy">Un flujo simple que alinea expectativas, valida temprano y deja todo listo para lanzar.</p>
+      </div>
+
+      <div class="process">
+        <div class="stages" role="list">
+          <div class="stage" role="listitem" aria-labelledby="etapa1">
+            <h5 id="etapa1">Descubrir y definir</h5>
+            <p>Entrevistas, análisis de contexto, mapa de stakeholders y objetivos medibles. Creamos un plan con hitos, riesgos y entregables claros.</p>
+          </div>
+          <div class="stage" role="listitem" aria-labelledby="etapa2">
+            <h5 id="etapa2">Diseñar y prototipar</h5>
+            <p>Bocetos, variantes y prototipos navegables. Test con personas y ajustes rápidos. Se consolidan guías, componentes y redacción.</p>
+          </div>
+          <div class="stage" role="listitem" aria-labelledby="etapa3">
+            <h5 id="etapa3">Entregar y acompañar</h5>
+            <p>Handoff con documentación impecable, checklist de accesibilidad y plan de medición. Soporte al lanzamiento y mejoras post-release.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN Y ENFOQUE (блок на выбор) -->
+  <section role="region" aria-label="Misión y enfoque">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Misión y enfoque</div>
+        <h2 class="section-title">Diseñar para que las personas entiendan y las marcas crezcan</h2>
+        <p class="section-copy">Creemos en el diseño como una práctica de claridad. Nuestra misión es reducir ruido y crear sistemas que perduren: manuales vivos, señalética legible, interfaces accesibles.</p>
+      </div>
+      <div class="mission">
+        <p>
+          Trabajamos con principios simples: contenido antes que ornamento, tipografía cuidada, contraste suficiente, pruebas con personas y documentación que cualquiera pueda mantener.
+          Esto se traduce en marcas que se reconocen, apps que se usan sin pensar y espacios donde uno se orienta sin preguntar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO (sección + modales) -->
+  <section id="contacto" role="region" aria-label="Contacto">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Contacto</div>
+        <h2 class="section-title">¿Charlamos? Te leemos</h2>
+        <p class="section-copy">Usá el botón para abrir el formulario. No pedimos teléfono. Al enviar verás una confirmación inmediata en pantalla.</p>
+      </div>
+      <div class="contact-cta">
+        <button class="btn" data-open-modal="contact">Abrir formulario</button>
+        <span class="helper" role="note">La información se usa sólo para responder tu consulta. Podés pedir su eliminación cuando quieras.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIE — sólo dirección y correo -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div><strong>WORK IN PROCESS S.R.L.</strong></div>
+      <div class="meta">Av LIBERTADOR DEL 5569 1426 Ciudad de Buenos Aires</div>
+      <div class="meta"><a href="mailto:info@workinprocess.pro">info@workinprocess.pro</a></div>
+      <p class="meta">Privacidad: no rastreamos ni almacenamos datos más allá de esta interacción. Si nos escribís, podemos eliminar tu información cuando lo solicites.</p>
+    </div>
+  </footer>
+
+  <!-- MODAL: Formulario -->
+  <div class="modal" id="modal-contact" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="form-title">
+    <div class="dialog">
+      <button class="close" aria-label="Cerrar" data-close-modal="contact">✕</button>
+      <h3 id="form-title">Contanos sobre tu proyecto</h3>
+      <p class="helper">Completá el formulario y te respondemos por correo. No solicitamos teléfono.</p>
+
+      <form id="contact-form" aria-describedby="form-helper">
+        <span id="form-helper" class="sr-only">Formulario compatible con revisión de Apple: sin campo de teléfono, sólo datos básicos.</span>
+
+        <label for="nombre">Nombre y apellido</label>
+        <input id="nombre" name="nombre" autocomplete="name" required aria-required="true" placeholder="Tu nombre" />
+
+        <label for="org">Organización</label>
+        <input id="org" name="org" autocomplete="organization" placeholder="Empresa/organismo (opcional)" />
+
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-required="true" placeholder="tu@correo.com" />
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Breve contexto, objetivos, plazos estimados, enlaces si aplica…"></textarea>
+
+        <div class="consent">
+          <input id="consent" name="consent" type="checkbox" required aria-required="true" />
+          <label for="consent">
+            Acepto que WORK IN PROCESS S.R.L. utilice estos datos sólo para responder mi consulta. Puedo solicitar su eliminación escribiendo a
+            <a href="mailto:info@workinprocess.pro">info@workinprocess.pro</a>.
+          </label>
+        </div>
+
+        <button class="submit" id="send" type="submit">Enviar consulta</button>
+        <div id="live" class="sr-only" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Confirmación -->
+  <div class="modal" id="modal-ok" aria-hidden="true" role="alertdialog" aria-modal="true" aria-labelledby="ok-title">
+    <div class="dialog">
+      <button class="close" aria-label="Cerrar" data-close-modal="ok">✕</button>
+      <h3 id="ok-title">¡Gracias! Recibimos tu mensaje</h3>
+      <p>Te vamos a responder al correo proporcionado. Si necesitás corregir algo, escribinos de nuevo.</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <button class="btn" data-close-modal="ok">Volver al sitio</button>
+        <a class="btn alt" href="mailto:info@workinprocess.pro">Abrir mi correo</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Utilidad: atrapamos foco en modal activo
+    function trapFocus(modal){
+      const focusables = modal.querySelectorAll('a[href], button, input, textarea, [tabindex]:not([tabindex="-1"])');
+      if(!focusables.length) return;
+      const first = focusables[0], last = focusables[focusables.length-1];
+      modal.addEventListener('keydown', (e)=>{
+        if(e.key !== 'Tab') return;
+        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      });
+    }
+
+    // Refs
+    const contactModal = document.getElementById('modal-contact');
+    const okModal = document.getElementById('modal-ok');
+
+    // Abrir modal de contacto
+    document.querySelectorAll('[data-open-modal="contact"]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        contactModal.setAttribute('aria-hidden','false');
+        const field = contactModal.querySelector('input, textarea, button');
+        if(field) field.focus();
+        trapFocus(contactModal);
+      });
+    });
+
+    // Cerrar modales
+    document.querySelectorAll('[data-close-modal="contact"]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ contactModal.setAttribute('aria-hidden','true'); });
+    });
+    document.querySelectorAll('[data-close-modal="ok"]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ okModal.setAttribute('aria-hidden','true'); });
+    });
+
+    // Cerrar al hacer clic fuera del diálogo
+    [contactModal, okModal].forEach(m=>{
+      m.addEventListener('click', (e)=>{ if(e.target === m){ m.setAttribute('aria-hidden','true'); }});
+    });
+
+    // Envío simulado con confirmación (sin persistencia de datos)
+    const form = document.getElementById('contact-form');
+    const live = document.getElementById('live');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const sendBtn = document.getElementById('send');
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Enviando…';
+      live.textContent = 'Procesando el formulario';
+      setTimeout(()=>{
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Enviar consulta';
+        contactModal.setAttribute('aria-hidden','true');
+        okModal.setAttribute('aria-hidden','false');
+        const okBtn = okModal.querySelector('[data-close-modal="ok"]');
+        if(okBtn) okBtn.focus();
+        live.textContent = 'Consulta enviada correctamente';
+        form.reset();
+      }, 900);
+    });
+
+    // Ganchos para navegación (scroll suave definido por CSS)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', ()=>{/* espacio para menú móvil si se suma luego */});
+    });
+  </script>
+</body>
+</html>
